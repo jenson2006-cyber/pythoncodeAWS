@@ -42,6 +42,7 @@ def register():
     cursor = None
 
     try:
+        # Upload photo to S3
         s3 = boto3.client("s3")
         s3.upload_fileobj(
             photo,
@@ -55,6 +56,7 @@ def register():
             f".amazonaws.com/{photo.filename}"
         )
 
+        # Connect to MySQL for this registration
         connection = get_db_connection()
         cursor = connection.cursor()
 
